@@ -1,55 +1,56 @@
-import { useMemo, lazy, MouseEvent, useState } from 'react'
-import { styled, Box, Paper, Typography, IconButton } from '@mui/material'
-import { DailyDataType } from '../type/type'
-import dayjs from 'dayjs'
-import AddEventDialog from './AddEventDialog'
+import { useMemo, lazy, MouseEvent, useState } from "react";
+import { styled, Box, Paper, Typography, IconButton } from "@mui/material";
+import { DailyDataType } from "../type/type";
+import dayjs from "dayjs";
+import AddEventDialog from "./AddEventDialog";
+import { IconSuspenseWrapper } from "./UI/SuspenseWrapper";
 
 const AddCircleOutlineIcon = lazy(
-  () => import('@mui/icons-material/AddCircleOutline')
-)
+  () => import("@mui/icons-material/AddCircleOutline")
+);
 
 const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
-  const [nowEditingDay, setNowEditingDay] = useState<number | null>(null)
+  const [nowEditingDay, setNowEditingDay] = useState<number | null>(null);
   const proccessedCalenderData = useMemo(() => {
     const emptyCellData: DailyDataType = {
       date: 0,
       dayInWeek: 0,
       events: [],
-    }
-    let tablebody: DailyDataType[][] = []
-    let weeklyRow: DailyDataType[] = []
+    };
+    let tablebody: DailyDataType[][] = [];
+    let weeklyRow: DailyDataType[] = [];
 
     calenderData.forEach((dailyData, index) => {
       if (index === 0 && dailyData.dayInWeek !== 0) {
         for (let i = 0; i < dailyData.dayInWeek; i++) {
-          weeklyRow.push({ ...emptyCellData, dayInWeek: i })
+          weeklyRow.push({ ...emptyCellData, dayInWeek: i });
         }
       }
-      weeklyRow.push(dailyData)
+      weeklyRow.push(dailyData);
       if (dailyData.dayInWeek === 6) {
-        tablebody.push(weeklyRow)
-        weeklyRow = []
+        tablebody.push(weeklyRow);
+        weeklyRow = [];
       } else if (
         calenderData.length === index + 1 &&
         dailyData.dayInWeek !== 6
       ) {
         for (let i = dailyData.dayInWeek + 1; i <= 6; i++) {
-          weeklyRow.push({ ...emptyCellData, dayInWeek: i })
+          weeklyRow.push({ ...emptyCellData, dayInWeek: i });
         }
-        tablebody.push(weeklyRow)
-        weeklyRow = []
+        tablebody.push(weeklyRow);
+        weeklyRow = [];
       }
-    })
-    return tablebody
-  }, [calenderData])
+    });
+    return tablebody;
+  }, [calenderData]);
 
   const handleAddEvent = (
     e: MouseEvent<HTMLLabelElement>,
     timeStamp: number
   ) => {
-    setNowEditingDay(timeStamp)
-  }
-  const handleDialogClose = () => setNowEditingDay(null)
+    setNowEditingDay(timeStamp);
+  };
+  const handleDialogClose = () => setNowEditingDay(null);
 
   return (
     <StyledGrid>
@@ -72,30 +73,27 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
               >
                 <div className="date-caontainer">
                   <Typography>
-                    {dayjs.unix(dailyData.date).get('date')}
+                    {dayjs.unix(dailyData.date).get("date")}
                     <IconButton
                       onClick={(e) => handleAddEvent(e, dailyData.date)}
                       color="primary"
                       aria-label="add-event"
                       component="label"
                     >
-                      <AddCircleOutlineIcon />
+                      <IconSuspenseWrapper
+                        component={<AddCircleOutlineIcon />}
+                      />
                     </IconButton>
                   </Typography>
                 </div>
-                <Box className="daily-content-list">
-                  {/* <div className="content-inner-line">
-                    <span>案場斷線:</span>
-                    <span>{dailyData.FieldDisconnect} 案場</span>
-                  </div> */}
-                </Box>
+                <Box className="daily-content-list"></Box>
               </Box>
             ) : (
               <Box
                 className="col-cell week-body-col empty-col"
                 key={`dailyCell+${index}`}
               ></Box>
-            )
+            );
           })}
         </Box>
       ))}
@@ -104,58 +102,58 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
         handleDialogClose={handleDialogClose}
       />
     </StyledGrid>
-  )
-}
+  );
+};
 
 const StyledGrid = styled(Paper)(({ theme }) => ({
-  '.grid-row': {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(7, minmax(165px, 1fr))',
+  ".grid-row": {
+    display: "grid",
+    gridTemplateColumns: "repeat(7, minmax(165px, 1fr))",
     gap: theme.spacing(0.5),
-    '&.weeks-head-row': {
+    "&.weeks-head-row": {
       borderRadius: `${theme.spacing(1)} ${theme.spacing(1)} 0 0`,
       backgroundColor: theme.palette.primary,
       borderBottom: `${theme.spacing(0.5)} solid ${theme.palette.primary.main}`,
     },
-    '&.weeks-grid-body': {
+    "&.weeks-grid-body": {
       padding: `0 ${theme.spacing(1)}`,
     },
   },
-  '.col-cell': {
+  ".col-cell": {
     padding: 0,
-    fontSize: '1rem',
-    '&.week-head-col': {
+    fontSize: "1rem",
+    "&.week-head-col": {
       fontWeight: theme.typography.fontWeightMedium,
-      textAlign: 'center',
+      textAlign: "center",
       padding: `${theme.spacing(1)} 0`,
     },
   },
-  '.week-body-col': {
-    '.date-caontainer': {
+  ".week-body-col": {
+    ".date-caontainer": {
       padding: theme.spacing(1),
       backgroundColor: theme.palette.grey[300],
-      '.MuiTypography-root': {
-        display: 'flex',
-        justifyContent: 'space-between',
+      ".MuiTypography-root": {
+        display: "flex",
+        justifyContent: "space-between",
         fontWeight: theme.typography.fontWeightMedium,
-        '.checkout-link': {
-          display: 'flex',
+        ".checkout-link": {
+          display: "flex",
           color: theme.palette.primary.main,
-          textDecoration: 'none',
+          textDecoration: "none",
         },
       },
     },
-    '.daily-content-list': {
+    ".daily-content-list": {
       padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
     },
-    '.content-inner-line': {
-      display: 'flex',
-      justifyContent: 'space-between',
+    ".content-inner-line": {
+      display: "flex",
+      justifyContent: "space-between",
     },
   },
-  '.empty-col': {
+  ".empty-col": {
     border: 0,
   },
-}))
+}));
 
-export default CalenderGrid
+export default CalenderGrid;
