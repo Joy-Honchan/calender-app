@@ -2,7 +2,7 @@ import { useMemo, lazy, MouseEvent, useState } from "react";
 import { styled, Box, Paper, Typography, IconButton } from "@mui/material";
 import { DailyDataType } from "../type/type";
 import dayjs from "dayjs";
-import AddEventDialog from "./AddEventDialog";
+// import AddEventDialog from "./AddEventDialog";
 import { IconSuspenseWrapper } from "./UI/SuspenseWrapper";
 
 const AddCircleOutlineIcon = lazy(
@@ -97,10 +97,10 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
           })}
         </Box>
       ))}
-      <AddEventDialog
+      {/* <AddEventDialog
         nowEditingDay={nowEditingDay}
         handleDialogClose={handleDialogClose}
-      />
+      /> */}
     </StyledGrid>
   );
 };
