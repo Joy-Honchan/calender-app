@@ -1,40 +1,35 @@
-import React, { useState, ChangeEvent, useMemo, useEffect, lazy } from "react";
-import { Theme, CssBaseline, ThemeProvider } from "@mui/material";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import { styled, Box, TextField } from "@mui/material";
-// import CalenderGrid from "./components/calenderGrid";
-// import { generateCalenderData } from "./type/type";
-import dayjs from "dayjs";
-import { PageSuspenseWrapper } from "components/UI/SuspenseWrapper";
-
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { RouterProvider } from "react-router-dom";
+import RouterConfig from "config/Route";
+import ThemeConfig from "config/Theme";
 // import Page Elements
-const LandingPage = lazy(() => import("components/LandingPage/index"));
-const CalenderPage = lazy(() => import("components/CalenderPage/index"));
-const ChartPage = lazy(() => import("components/ChartPage/index"));
+// const LandingPage = lazy(() => import("components/LandingPage/index"));
+// const CalenderPage = lazy(() => import("components/CalenderPage/index"));
+// const ChartPage = lazy(() => import("components/ChartPage/index"));
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <PageSuspenseWrapper component={<LandingPage />} />,
-    errorElement: <div>There is a Error</div>,
-  },
-  {
-    path: "/calender",
-    element: <PageSuspenseWrapper component={<CalenderPage />} />,
-  },
-  {
-    path: "/chart",
-    element: <PageSuspenseWrapper component={<ChartPage />} />,
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <PageSuspenseWrapper component={<LandingPage />} />,
+//     errorElement: <div>There is a Error</div>,
+//   },
+//   {
+//     path: "/calender",
+//     element: <PageSuspenseWrapper component={<CalenderPage />} />,
+//   },
+//   {
+//     path: "/chart",
+//     element: <PageSuspenseWrapper component={<ChartPage />} />,
+//   },
+// ]);
 
 function App() {
-  return <RouterProvider router={router} />;
-
-  // <ThemeProvider>
-  {
-    /* </ThemeProvider>; */
-  }
+  return (
+    <ThemeProvider theme={ThemeConfig}>
+      <CssBaseline />
+      <RouterProvider router={RouterConfig} />
+    </ThemeProvider>
+  );
 }
 
 // function App() {
