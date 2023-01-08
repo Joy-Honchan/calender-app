@@ -1,9 +1,9 @@
 import { useMemo, lazy, MouseEvent, useState } from "react";
 import { styled, Box, Paper, Typography, IconButton } from "@mui/material";
-import { DailyDataType } from "../type/type";
+import { DailyDataType } from "../../type/type";
 import dayjs from "dayjs";
 // import AddEventDialog from "./AddEventDialog";
-import { IconSuspenseWrapper } from "./UI/SuspenseWrapper";
+import { IconSuspenseWrapper } from "./SuspenseWrapper";
 
 const AddCircleOutlineIcon = lazy(
   () => import("@mui/icons-material/AddCircleOutline")

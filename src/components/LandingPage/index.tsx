@@ -4,12 +4,18 @@ import { styled, Box, Typography, Button } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import DayCountDown from "./DayCountDown";
+import dayjs from "dayjs";
+import generateCountNextHoliday from "utils/countNextHoliday";
 
 const LandingPage = () => {
+  const daysBeforeNextHoliday = generateCountNextHoliday(
+    dayjs().format("YYYYMMDD")
+  );
+  // console.log("daysBeforeNextHoliday", daysBeforeNextHoliday);
   return (
     <StyleWrapper>
       <Box className="center-section-box">
-        <DayCountDown total={3} />
+        <DayCountDown total={daysBeforeNextHoliday} />
         <Box className="buttons-box">
           <Link to={"/calender"}>
             <Button
@@ -31,7 +37,7 @@ const LandingPage = () => {
           </Link>
         </Box>
       </Box>
-      <Typography className="picture-credit">
+      <Typography role="picture-credit" className="picture-credit">
         <a href="https://www.freepik.com/free-vector/summer-landscape-wallpaper-zoom_8940571.htm#query=vacation&position=9&from_view=search&track=sph">
           Image by pikisuperstar
         </a>{" "}
@@ -48,7 +54,6 @@ const StyleWrapper = styled(Box)(({ theme }) => ({
   backgroundImage: "url('image/4048260.jpg')",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  backgroundColor: theme.palette.primary.light,
   "@media (min-width:900px) and (orientation: landscape)": {
     backgroundSize: "contain",
     backgroundPosition: "center",
