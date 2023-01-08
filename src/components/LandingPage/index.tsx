@@ -1,14 +1,42 @@
 import { useState } from "react";
-import { styled, Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { styled, Box, Typography, Button } from "@mui/material";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import DayCountDown from "./DayCountDown";
+
 const LandingPage = () => {
   return (
     <StyleWrapper>
-      <Typography>距離下個假日還有 4 天</Typography>
-      <Typography>加油!再撐一下下 (*•̀ㅂ•́)و</Typography>
-      <a href="https://www.freepik.com/free-vector/summer-landscape-wallpaper-zoom_8940571.htm#query=vacation&position=9&from_view=search&track=sph">
-        Image by pikisuperstar
-      </a>
-      on Freepik
+      <Box className="center-section-box">
+        <DayCountDown total={3} />
+        <Box className="buttons-box">
+          <Link to={"/calender"}>
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<CalendarMonthIcon />}
+            >
+              前往行事曆
+            </Button>
+          </Link>
+          <Link to={"/chart"}>
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<BarChartIcon />}
+            >
+              前往統計表
+            </Button>
+          </Link>
+        </Box>
+      </Box>
+      <Typography className="picture-credit">
+        <a href="https://www.freepik.com/free-vector/summer-landscape-wallpaper-zoom_8940571.htm#query=vacation&position=9&from_view=search&track=sph">
+          Image by pikisuperstar
+        </a>{" "}
+        on Freepik
+      </Typography>
     </StyleWrapper>
   );
 };
@@ -16,6 +44,7 @@ const LandingPage = () => {
 const StyleWrapper = styled(Box)(({ theme }) => ({
   width: "100vw",
   height: "100vh",
+  //background settings
   backgroundImage: "url('image/4048260.jpg')",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
@@ -24,9 +53,40 @@ const StyleWrapper = styled(Box)(({ theme }) => ({
     backgroundSize: "contain",
     backgroundPosition: "center",
   },
-  // [theme.breakpoints.down("md")]: {
-  //   backgroundSize: "cover",
-  // },
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  ".landing-title-box": {
+    textAlign: "center",
+    ".next-holiday-countdown-typography": {
+      textShadow: `3px 3px ${theme.palette.grey[400]}`,
+      fontWeight: theme.typography.fontWeightBold,
+      paddingTop: theme.spacing(1),
+    },
+    ".landing-slogan-typography": {
+      paddingTop: theme.spacing(1),
+    },
+  },
+  ".buttons-box": {
+    display: "flex",
+    justifyContent: "space-around",
+    padding: `${theme.spacing(2)} 0`,
+    button: {
+      color: "black",
+      "&:hover": {
+        color: theme.palette.grey[200],
+      },
+    },
+    a: {
+      textDecoration: "none",
+    },
+  },
+  ".picture-credit": {
+    backgroundColor: "rgba(219, 219, 219, 0.7)",
+    position: "absolute",
+    bottom: theme.spacing(1),
+    right: theme.spacing(1),
+  },
 }));
 
 export default LandingPage;
