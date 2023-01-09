@@ -1,31 +1,29 @@
 import { useState, useEffect, ChangeEvent, useMemo } from "react";
 import { styled, Box, TextField } from "@mui/material";
 import dayjs from "dayjs";
-import CalenderGrid from "components/UI/calenderGrid";
+import CalenderGrid from "components/CalenderPage/calenderGrid";
+import NavigateButtoms from "components/UI/NavigateButtons";
+import { getEveryDateInMonth } from "utils/generateDates";
 
 const CalenderPage = () => {
   const nowTime = dayjs();
-  const [chosenYearMonth, setChosenYearMonth] = useState<
-    [number, number] | null
-  >(null);
+  const [chosenYearMonth, setChosenYearMonth] = useState<string | null>(null);
   useEffect(() => {
-    setChosenYearMonth([nowTime.get("year"), nowTime.get("month")]);
+    setChosenYearMonth(nowTime.format("YYYYMM"));
   }, []);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const yearMontharr = event.target.value.split("-");
-    setChosenYearMonth([Number(yearMontharr[0]), Number(yearMontharr[1])]);
+    const yearMonth = event.target.value.split("-").join("");
+    setChosenYearMonth(yearMonth);
   };
 
   const calenderData = useMemo(() => {
-    // return chosenYearMonth
-    //   ? generateCalenderData(chosenYearMonth[0], chosenYearMonth[1])
-    //   : [];
-    return [];
+    return chosenYearMonth ? getEveryDateInMonth(chosenYearMonth) : [];
   }, [chosenYearMonth]);
 
   return (
     <StyleWrapper>
+      <NavigateButtoms currentPage={1} />
       <Box className="textfield-container">
         <TextField
           label={"選擇月份"}
@@ -49,7 +47,8 @@ const CalenderPage = () => {
 const StyleWrapper = styled(Box)(({ theme }) => ({
   padding: `${theme.spacing(2)} ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
   ".textfield-container": {
-    paddingBottom: theme.spacing(2),
+    padding: `${theme.spacing(2)} 0`,
+    textAlign: "center",
   },
 
   ".calender-chart-container": {

@@ -1,15 +1,23 @@
-import dayjs from 'dayjs'
+import officialCalenderData from "data/official-calender-data.json";
 
-export const getEveryDateInMonth = (year: number, month: number) => {
+const weekObj: { [x: string]: number } = {
+  日: 0,
+  一: 1,
+  二: 2,
+  三: 3,
+  四: 4,
+  五: 5,
+  六: 6,
+};
 
-  const date = new Date(year, month - 1, 1);
-
-  const dates = [];
-
-  while (date.getMonth() === month - 1) {
-    dates.push(dayjs(date));
-    date.setDate(date.getDate() + 1);
-  }
-  return dates;
-}
-
+export const getEveryDateInMonth = (yearMonth: string) => {
+  // console.log(officialCalenderData);
+  return officialCalenderData
+    .filter((item) => item.西元日期.startsWith(yearMonth))
+    .map((item) => ({
+      dateInMonth: Number(item.西元日期.slice(6, 8)),
+      dayInWeek: weekObj[item.星期],
+      isDayOff: Boolean(item.是否放假 === "2"),
+      remark: item.備註,
+    }));
+};

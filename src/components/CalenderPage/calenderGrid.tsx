@@ -1,21 +1,20 @@
 import { useMemo, lazy, MouseEvent, useState } from "react";
 import { styled, Box, Paper, Typography, IconButton } from "@mui/material";
-import { DailyDataType } from "../../type/type";
-import dayjs from "dayjs";
-// import AddEventDialog from "./AddEventDialog";
-import { IconSuspenseWrapper } from "./SuspenseWrapper";
 
-const AddCircleOutlineIcon = lazy(
-  () => import("@mui/icons-material/AddCircleOutline")
-);
+interface DailyDataType {
+  dateInMonth: number;
+  dayInWeek: number;
+  isDayOff: boolean;
+  remark: string;
+}
 
 const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
-  const [nowEditingDay, setNowEditingDay] = useState<number | null>(null);
   const proccessedCalenderData = useMemo(() => {
     const emptyCellData: DailyDataType = {
-      date: 0,
+      dateInMonth: 0,
       dayInWeek: 0,
-      events: [],
+      isDayOff: false,
+      remark: "",
     };
     let tablebody: DailyDataType[][] = [];
     let weeklyRow: DailyDataType[] = [];
@@ -44,14 +43,6 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
     return tablebody;
   }, [calenderData]);
 
-  const handleAddEvent = (
-    e: MouseEvent<HTMLLabelElement>,
-    timeStamp: number
-  ) => {
-    setNowEditingDay(timeStamp);
-  };
-  const handleDialogClose = () => setNowEditingDay(null);
-
   return (
     <StyledGrid>
       <Box className="grid-row weeks-head-row">
@@ -66,27 +57,17 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
       {proccessedCalenderData.map((weeklyRow, index) => (
         <Box key={`week` + index} className="grid-row weeks-grid-body">
           {weeklyRow.map((dailyData, index) => {
-            return dailyData.date !== 0 ? (
+            return dailyData.dateInMonth !== 0 ? (
               <Box
                 className="col-cell week-body-col"
                 key={`dailyCell+${index}`}
               >
                 <div className="date-caontainer">
-                  <Typography>
-                    {dayjs.unix(dailyData.date).get("date")}
-                    <IconButton
-                      onClick={(e) => handleAddEvent(e, dailyData.date)}
-                      color="primary"
-                      aria-label="add-event"
-                      component="label"
-                    >
-                      <IconSuspenseWrapper
-                        component={<AddCircleOutlineIcon />}
-                      />
-                    </IconButton>
-                  </Typography>
+                  <Typography>{dailyData.dateInMonth}</Typography>
                 </div>
-                <Box className="daily-content-list"></Box>
+                <Box className="daily-content-list">
+                  <Typography>{dailyData.remark}</Typography>
+                </Box>
               </Box>
             ) : (
               <Box
@@ -97,10 +78,6 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
           })}
         </Box>
       ))}
-      {/* <AddEventDialog
-        nowEditingDay={nowEditingDay}
-        handleDialogClose={handleDialogClose}
-      /> */}
     </StyledGrid>
   );
 };
@@ -108,7 +85,7 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
 const StyledGrid = styled(Paper)(({ theme }) => ({
   ".grid-row": {
     display: "grid",
-    gridTemplateColumns: "repeat(7, minmax(165px, 1fr))",
+    gridTemplateColumns: "repeat(7, minmax(50px, 1fr))",
     gap: theme.spacing(0.5),
     "&.weeks-head-row": {
       borderRadius: `${theme.spacing(1)} ${theme.spacing(1)} 0 0`,
