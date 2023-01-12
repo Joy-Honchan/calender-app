@@ -11,7 +11,6 @@ const weekObj: { [x: string]: number } = {
 };
 
 export const getEveryDateInMonth = (yearMonth: string) => {
-  // console.log(officialCalenderData);
   return officialCalenderData
     .filter((item) => item.西元日期.startsWith(yearMonth))
     .map((item) => ({

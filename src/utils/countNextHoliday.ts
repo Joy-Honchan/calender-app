@@ -4,10 +4,8 @@ const generateCountNextHoliday = (nowDate: string) => {
   const nowDateIndex = officialCalenderData.findIndex(
     (item) => item.西元日期 === nowDate
   );
-  //   console.log("nowDateIndex", nowDateIndex);
   let dayCount = 0;
   for (let i = nowDateIndex; i < officialCalenderData.length; i++) {
-    console.log("isitholiday", officialCalenderData[i].是否放假);
     if (officialCalenderData[i].是否放假 === "2") {
       break;
     } else {

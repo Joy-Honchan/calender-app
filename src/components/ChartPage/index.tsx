@@ -1,15 +1,24 @@
 import { styled, Box } from "@mui/material";
 import NavigateButtoms from "components/UI/NavigateButtons";
-import { getMonthlyData } from "utils/generateChartData";
+import BarChart from "./BarChart";
 const ChartPage = () => {
-  const { workDayData, dayOffData } = getMonthlyData();
   return (
     <StyleWrapper>
       <NavigateButtoms currentPage={2} />
-      上班天: {workDayData.join(", ")}
-      放假天: {dayOffData.join(", ")}
+      <BarChart />
     </StyleWrapper>
   );
 };
-const StyleWrapper = styled(Box)(({ theme }) => ({}));
+const StyleWrapper = styled(Box)(({ theme }) => ({
+  height: "100vh",
+  padding: theme.spacing(2),
+  // padding: `${theme.spacing(2)} ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
+  ".container-scroller": {
+    padding: `${theme.spacing(4)} ${theme.spacing(2)}`,
+    overflowX: "auto",
+    ".barchart-container": {
+      minWidth: "800px",
+    },
+  },
+}));
 export default ChartPage;
