@@ -55,19 +55,19 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
         <Box className="col-cell week-head-col">六</Box>
       </Box>
       {proccessedCalenderData.map((weeklyRow, index) => (
-        <Box key={`week` + index} className="grid-row weeks-grid-body">
+        <Box key={`week` + index} className="grid-row weeks-body-row">
           {weeklyRow.map((dailyData, index) => {
             return dailyData.dateInMonth !== 0 ? (
               <Box
                 className="col-cell week-body-col"
                 key={`dailyCell+${index}`}
               >
-                <div className="date-caontainer">
-                  <Typography>{dailyData.dateInMonth}</Typography>
-                </div>
-                <Box className="daily-content-list">
-                  <Typography>{dailyData.remark}</Typography>
-                </Box>
+                <Typography variant="h4" className="date-number">
+                  {dailyData.dateInMonth}
+                </Typography>
+                <Typography className="date-remark">
+                  {dailyData.remark}
+                </Typography>
               </Box>
             ) : (
               <Box
@@ -85,51 +85,43 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
 const StyledGrid = styled(Paper)(({ theme }) => ({
   ".grid-row": {
     display: "grid",
-    gridTemplateColumns: "repeat(7, minmax(50px, 1fr))",
+    gridTemplateColumns: "repeat(7, 1fr)",
     gap: theme.spacing(0.5),
     "&.weeks-head-row": {
       borderRadius: `${theme.spacing(1)} ${theme.spacing(1)} 0 0`,
       backgroundColor: theme.palette.primary,
       borderBottom: `${theme.spacing(0.5)} solid ${theme.palette.primary.main}`,
     },
-    "&.weeks-grid-body": {
-      padding: `0 ${theme.spacing(1)}`,
+    "&.weeks-body-row": {
+      // padding: `0 ${theme.spacing(1)}`,
+      minHeight: "60px",
     },
   },
   ".col-cell": {
-    padding: 0,
+    padding: `${theme.spacing(1)} 0`,
     fontSize: "1rem",
     "&.week-head-col": {
       fontWeight: theme.typography.fontWeightMedium,
       textAlign: "center",
-      padding: `${theme.spacing(1)} 0`,
+    },
+    "&.week-body-col": {
+      textAlign: "center",
+      // ".date-number":{
+
+      // }
+    },
+    "&.empty-col": {
+      border: 0,
     },
   },
-  ".week-body-col": {
-    ".date-caontainer": {
-      padding: theme.spacing(1),
-      backgroundColor: theme.palette.grey[300],
-      ".MuiTypography-root": {
-        display: "flex",
-        justifyContent: "space-between",
-        fontWeight: theme.typography.fontWeightMedium,
-        ".checkout-link": {
-          display: "flex",
-          color: theme.palette.primary.main,
-          textDecoration: "none",
-        },
+  //width < 600px
+  [theme.breakpoints.down("sm")]: {
+    backgroundColor: "green",
+    ".grid-row": {
+      "&.weeks-body-row": {
+        minHeight: 0,
       },
     },
-    ".daily-content-list": {
-      padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
-    },
-    ".content-inner-line": {
-      display: "flex",
-      justifyContent: "space-between",
-    },
-  },
-  ".empty-col": {
-    border: 0,
   },
 }));
 

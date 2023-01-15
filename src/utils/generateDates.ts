@@ -10,9 +10,10 @@ const weekObj: { [x: string]: number } = {
   六: 6,
 };
 
-export const getEveryDateInMonth = (yearMonth: string) => {
+export const getEveryDateInMonth = (month: number) => {
+  const monthString = month < 10 ? `0${month}` : `${month}`;
   return officialCalenderData
-    .filter((item) => item.西元日期.startsWith(yearMonth))
+    .filter((item) => item.西元日期.startsWith(`2023${monthString}`))
     .map((item) => ({
       dateInMonth: Number(item.西元日期.slice(6, 8)),
       dayInWeek: weekObj[item.星期],
