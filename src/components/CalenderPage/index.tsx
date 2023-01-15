@@ -60,7 +60,7 @@ const CalenderPage = () => {
 const StyleWrapper = styled(Box)(({ theme }) => ({
   padding: `${theme.spacing(2)} ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
   ".choose-month-container": {
-    padding: `${theme.spacing(2)} 0`,
+    padding: theme.spacing(1.5, 0, 1.5, 0),
     textAlign: "center",
     ".month-pagination": {
       display: "inline-block",

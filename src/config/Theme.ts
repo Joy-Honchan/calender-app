@@ -9,6 +9,7 @@ const ThemeConfig = createTheme({
       light: "#FEBBA1",
       main: "#FF8F8B",
       dark: "#FF6E75",
+      contrastText: "#FFF",
     },
     secondary: {
       main: "#ffcc71",
