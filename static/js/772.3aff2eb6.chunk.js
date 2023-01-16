@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkcalender_app=self.webpackChunkcalender_app||[]).push([[772],{772:function(e,h,v){var a=v(4836);Object.defineProperty(h,"__esModule",{value:!0}),h.default=void 0;var c=a(v(5649)),d=v(184),l=(0,c.default)((0,d.jsx)("path",{d:"M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"}),"CalendarMonth");h.default=l}}]);
+//# sourceMappingURL=772.3aff2eb6.chunk.js.map

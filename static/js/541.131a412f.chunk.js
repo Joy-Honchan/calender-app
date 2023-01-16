@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkcalender_app=self.webpackChunkcalender_app||[]).push([[541],{7541:function(e,a,u){var d=u(4836);Object.defineProperty(a,"__esModule",{value:!0}),a.default=void 0;var l=d(u(5649)),p=u(184),t=(0,l.default)((0,p.jsx)("path",{d:"M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"}),"Home");a.default=t}}]);
+//# sourceMappingURL=541.131a412f.chunk.js.map
