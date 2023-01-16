@@ -5,17 +5,25 @@ const ChartPage = () => {
   return (
     <StyleWrapper>
       <NavigateButtoms currentPage={2} />
-      <BarChart />
+      <Box className="container-scroller">
+        <Box className="barchart-container">
+          <BarChart />
+        </Box>
+      </Box>
     </StyleWrapper>
   );
 };
 const StyleWrapper = styled(Box)(({ theme }) => ({
-  height: "100vh",
+  display: "flex",
+  flexFlow: "column nowrap",
+  maxHeight: "100vh",
   padding: theme.spacing(2),
   // padding: `${theme.spacing(2)} ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
   ".container-scroller": {
-    padding: `${theme.spacing(4)} ${theme.spacing(2)}`,
+    padding: theme.spacing(0, 1),
     overflowX: "auto",
+    overflowY: "auto",
+    position: "relative",
     ".barchart-container": {
       minWidth: "800px",
     },
