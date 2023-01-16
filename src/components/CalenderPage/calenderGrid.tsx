@@ -55,19 +55,21 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
         <Box className="col-cell week-head-col">六</Box>
       </Box>
       {proccessedCalenderData.map((weeklyRow, index) => (
-        <Box key={`week` + index} className="grid-row weeks-grid-body">
+        <Box key={`week` + index} className="grid-row weeks-body-row">
           {weeklyRow.map((dailyData, index) => {
             return dailyData.dateInMonth !== 0 ? (
               <Box
-                className="col-cell week-body-col"
+                className={`col-cell week-body-col ${
+                  dailyData.isDayOff ? "is-dayoff" : null
+                }`}
                 key={`dailyCell+${index}`}
               >
-                <div className="date-caontainer">
-                  <Typography>{dailyData.dateInMonth}</Typography>
-                </div>
-                <Box className="daily-content-list">
-                  <Typography>{dailyData.remark}</Typography>
-                </Box>
+                <Typography variant="h5" className="date-number">
+                  {dailyData.dateInMonth}
+                </Typography>
+                <Typography variant="caption" className="date-remark">
+                  {dailyData.remark || "--"}
+                </Typography>
               </Box>
             ) : (
               <Box
@@ -83,54 +85,55 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
 };
 
 const StyledGrid = styled(Paper)(({ theme }) => ({
+  margin: theme.spacing(0, 1, 0, 1),
   ".grid-row": {
     display: "grid",
-    gridTemplateColumns: "repeat(7, minmax(50px, 1fr))",
-    gap: theme.spacing(0.5),
+    gridTemplateColumns: "repeat(7, 1fr)",
+    gap: theme.spacing(1),
     "&.weeks-head-row": {
       borderRadius: `${theme.spacing(1)} ${theme.spacing(1)} 0 0`,
-      backgroundColor: theme.palette.primary,
-      borderBottom: `${theme.spacing(0.5)} solid ${theme.palette.primary.main}`,
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+      // borderBottom: `${theme.spacing(0.5)} solid ${
+      //   theme.palette.primary.light
+      // }`,
     },
-    "&.weeks-grid-body": {
-      padding: `0 ${theme.spacing(1)}`,
+    "&.weeks-body-row": {
+      marginTop: theme.spacing(1),
+      // "&:not(:last-child)": {
+      //   marginBottom: theme.spacing(1),
+      // },
     },
   },
   ".col-cell": {
-    padding: 0,
+    padding: `${theme.spacing(1)} 0`,
     fontSize: "1rem",
     "&.week-head-col": {
       fontWeight: theme.typography.fontWeightMedium,
       textAlign: "center",
-      padding: `${theme.spacing(1)} 0`,
     },
-  },
-  ".week-body-col": {
-    ".date-caontainer": {
-      padding: theme.spacing(1),
-      backgroundColor: theme.palette.grey[300],
-      ".MuiTypography-root": {
-        display: "flex",
-        justifyContent: "space-between",
-        fontWeight: theme.typography.fontWeightMedium,
-        ".checkout-link": {
-          display: "flex",
-          color: theme.palette.primary.main,
-          textDecoration: "none",
-        },
+    "&.week-body-col": {
+      textAlign: "center",
+      "&.is-dayoff": {
+        backgroundColor: theme.palette.primary.light,
+      },
+      "&:not(.is-dayoff)": {
+        color: theme.palette.grey[600],
       },
     },
-    ".daily-content-list": {
-      padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
-    },
-    ".content-inner-line": {
-      display: "flex",
-      justifyContent: "space-between",
+    "&.empty-col": {
+      border: 0,
     },
   },
-  ".empty-col": {
-    border: 0,
-  },
+  //width < 600px
+  // [theme.breakpoints.down("sm")]: {
+  //   backgroundColor: "green",
+  //   ".grid-row": {
+  //     "&.weeks-body-row": {
+  //       minHeight: 0,
+  //     },
+  //   },
+  // },
 }));
 
 export default CalenderGrid;
