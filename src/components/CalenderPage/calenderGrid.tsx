@@ -1,5 +1,6 @@
 import { useMemo, lazy, MouseEvent, useState } from "react";
 import { styled, Box, Paper, Typography, IconButton } from "@mui/material";
+import dayjs from "dayjs";
 
 interface DailyDataType {
   dateInMonth: number;
@@ -8,7 +9,13 @@ interface DailyDataType {
   remark: string;
 }
 
-const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
+const CalenderGrid = ({
+  calenderData,
+  todayDate,
+}: {
+  calenderData: DailyDataType[];
+  todayDate?: number;
+}) => {
   const proccessedCalenderData = useMemo(() => {
     const emptyCellData: DailyDataType = {
       dateInMonth: 0,
@@ -61,6 +68,10 @@ const CalenderGrid = ({ calenderData }: { calenderData: DailyDataType[] }) => {
               <Box
                 className={`col-cell week-body-col ${
                   dailyData.isDayOff ? "is-dayoff" : null
+                } ${
+                  todayDate && dailyData.dateInMonth === todayDate
+                    ? "is-today"
+                    : null
                 }`}
                 key={`dailyCell+${index}`}
               >
@@ -94,15 +105,9 @@ const StyledGrid = styled(Paper)(({ theme }) => ({
       borderRadius: `${theme.spacing(1)} ${theme.spacing(1)} 0 0`,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
-      // borderBottom: `${theme.spacing(0.5)} solid ${
-      //   theme.palette.primary.light
-      // }`,
     },
     "&.weeks-body-row": {
       marginTop: theme.spacing(1),
-      // "&:not(:last-child)": {
-      //   marginBottom: theme.spacing(1),
-      // },
     },
   },
   ".col-cell": {
@@ -119,6 +124,9 @@ const StyledGrid = styled(Paper)(({ theme }) => ({
       },
       "&:not(.is-dayoff)": {
         color: theme.palette.grey[600],
+      },
+      "&.is-today": {
+        border: `${theme.spacing(1)} dashed ${theme.palette.success.main}`,
       },
     },
     "&.empty-col": {

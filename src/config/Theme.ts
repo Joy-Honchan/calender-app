@@ -15,6 +15,9 @@ const ThemeConfig = createTheme({
       main: "#ffcc71",
       dark: "#FFB12B",
     },
+    success: {
+      main: "#58c7da",
+    },
   },
   typography: {
     fontFamily: ["Noto Sans", "Noto Sans TC", "sans-serif"].join(","),

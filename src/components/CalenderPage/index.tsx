@@ -6,11 +6,9 @@ import NavigateButtoms from "components/UI/NavigateButtons";
 import { getEveryDateInMonth } from "utils/generateDates";
 
 const CalenderPage = () => {
-  const nowTime = dayjs();
-  const [chosenMonth, setChosenMonth] = useState<number | null>(null);
-  useEffect(() => {
-    setChosenMonth(nowTime.get("month") + 1);
-  }, []);
+  const thisMonth = dayjs().get("month") + 1;
+  const todayDate = dayjs().get("date");
+  const [chosenMonth, setChosenMonth] = useState<number>(thisMonth);
 
   const handleChange = (event: ChangeEvent<unknown>, value: number) => {
     setChosenMonth(value);
@@ -36,21 +34,11 @@ const CalenderPage = () => {
                 onChange={handleChange}
               />
             </Typography>
-
-            {/* <TextField
-          label={"選擇月份"}
-          type="month"
-          defaultValue={nowTime.format("YYYY-MM")}
-          size="small"
-          sx={{ width: 150 }}
-          onChange={handleChange}
-          inputProps={{
-            min: "2023-01",
-            max: "2023-12",
-          }}
-        /> */}
           </Box>
-          <CalenderGrid calenderData={calenderData} />
+          <CalenderGrid
+            calenderData={calenderData}
+            todayDate={thisMonth === chosenMonth ? todayDate : undefined}
+          />
         </>
       ) : null}
     </StyleWrapper>

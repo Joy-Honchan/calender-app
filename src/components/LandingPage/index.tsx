@@ -3,6 +3,9 @@ import DayCountDown from "./DayCountDown";
 import dayjs from "dayjs";
 import generateCountNextHoliday from "utils/countNextHoliday";
 import NavigateButtoms from "components/UI/NavigateButtons";
+import { baseUrl } from "config/Route";
+
+const imgUrl = `${baseUrl}/image/4048260.jpg`;
 
 const LandingPage = () => {
   const daysBeforeNextHoliday = generateCountNextHoliday(
@@ -28,7 +31,7 @@ const StyleWrapper = styled(Box)(({ theme }) => ({
   width: "100vw",
   height: "100vh",
   //background settings
-  backgroundImage: "url('image/4048260.jpg')",
+  backgroundImage: `url(${imgUrl})`,
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   "@media (min-width:900px) and (orientation: landscape)": {
