@@ -3,7 +3,7 @@ import DayCountDown from './DayCountDown'
 import dayjs from 'dayjs'
 import generateCountNextHoliday from 'utils/countNextHoliday'
 import NavigateButtoms from 'components/UI/NavigateButtons'
-import { baseUrl } from 'config/Route'
+import bgImg from 'asset/4048260.jpg'
 
 declare global {
   interface Window {
@@ -14,8 +14,7 @@ declare global {
   }
 }
 
-const imgUrl = `${baseUrl}/image/4048260.jpg`
-
+// const imgUrl = `./image/4048260.jpg`
 const LandingPage = () => {
   const daysBeforeNextHoliday = generateCountNextHoliday(
     dayjs().format('YYYYMMDD')
@@ -27,10 +26,6 @@ const LandingPage = () => {
         <Typography variant="h3" className="landing-title-typography">
           {nodeVersion}
         </Typography>
-        <Typography
-          variant="h3"
-          className="landing-title-typography"
-        ></Typography>
         <DayCountDown total={daysBeforeNextHoliday} />
         <NavigateButtoms currentPage={0} />
       </Box>
@@ -48,7 +43,7 @@ const StyleWrapper = styled(Box)(({ theme }) => ({
   width: '100vw',
   height: '100vh',
   //background settings
-  backgroundImage: `url(${imgUrl})`,
+  backgroundImage: `url(${bgImg})`,
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   '@media (min-width:900px) and (orientation: landscape)': {
