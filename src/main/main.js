@@ -4,7 +4,7 @@
 // import { app, BrowserWindow } from 'electron'
 // import * as path from 'path'
 
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 const createWindow = () => {
@@ -29,6 +29,21 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
+
+  // receive from ipcRenderer.send
+  ipcMain.on('ipcR send', async (event, data) => {
+    console.log(data)
+  })
+  ipcMain.handle('ipcR invoke', async (event, data) => {
+    console.log(data)
+    const p = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(data)
+      }, 2000)
+    })
+    const result = await p
+    return `${result} has recieved in Main`
+  })
 
   app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the

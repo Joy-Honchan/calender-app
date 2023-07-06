@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import generateCountNextHoliday from 'utils/countNextHoliday'
 import NavigateButtoms from 'components/UI/NavigateButtons'
 import bgImg from 'asset/4048260.jpg'
+import InputForm from './InputForm'
 
 declare global {
   interface Window {
@@ -11,21 +12,35 @@ declare global {
       node: () => string
       chrome: () => string
     }
+    ipcFunc: {
+      send: (value: string) => void
+      invoke: (value: string) => Promise<string>
+    }
   }
 }
 
-// const imgUrl = `./image/4048260.jpg`
 const LandingPage = () => {
   const daysBeforeNextHoliday = generateCountNextHoliday(
     dayjs().format('YYYYMMDD')
   )
   const nodeVersion = window.versionObj.node()
+  const ipcFuncSend = (value: string) => {
+    window.ipcFunc.send(value)
+    console.log(value)
+  }
+  const ipcFuncInvoke = async (value: string) => {
+    const result = await window.ipcFunc.invoke(value)
+    console.log(result, '-caught in index')
+  }
+
   return (
     <StyleWrapper>
       <Box className="center-section-box">
-        <Typography variant="h3" className="landing-title-typography">
-          {nodeVersion}
+        <Typography variant="h6" className="landing-title-typography">
+          current node cersion is: {nodeVersion}
         </Typography>
+        <InputForm ipcFunc={ipcFuncSend} label="send" />
+        <InputForm ipcFunc={ipcFuncInvoke} label="invoke" />
         <DayCountDown total={daysBeforeNextHoliday} />
         <NavigateButtoms currentPage={0} />
       </Box>
