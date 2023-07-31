@@ -1,5 +1,4 @@
 {
-  "homepage": ".",
   "name": "calender-app",
   "version": "0.1.0",
   "private": true,
@@ -38,9 +37,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "electron:serve": "concurrently \"cross-env BROWSER=none npm start\" \"npm run electron:start\"",
+    "electron:serve": "concurrently \"cross-env BROWSER=none npm start\" \"electron-forge start\"",
     "electron:build": "",
-    "electron:start": "wait-on http://localhost:3000 && electronmon .",
     "package": "electron-forge package",
     "make": "react-scripts build && electron-forge make"
   },
@@ -72,7 +70,6 @@
     "concurrently": "^8.2.0",
     "cross-env": "^7.0.3",
     "electron": "^25.2.0",
-    "electronmon": "^2.0.2",
     "gh-pages": "^4.0.0",
     "wait-on": "^7.0.1"
   }
