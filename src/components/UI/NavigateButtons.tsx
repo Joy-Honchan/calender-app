@@ -69,9 +69,10 @@ const NavigateButtoms = ({ currentPage }: { currentPage: number }) => {
 };
 
 const StyleWrapper = styled(Box)(({ theme }) => ({
-  maxWidth: "300px",
-  display: "flex",
-  justifyContent: "space-around",
+  display: "grid",
+  gridTemplateColumns: "max-content max-content",
+  gap: "15px",
+  // justifyContent: "space-around",
   button: {
     color: "black",
     "&:hover": {

@@ -7,7 +7,7 @@ import { getEveryDateInMonth } from "utils/generateDates";
 
 const CalenderPage = () => {
   const thisMonth = dayjs().get("month") + 1;
-  const todayDate = dayjs().get("date");
+  // const todayDate = dayjs().get("date");
   const [chosenMonth, setChosenMonth] = useState<number>(thisMonth);
 
   const handleChange = (event: ChangeEvent<unknown>, value: number) => {
@@ -37,7 +37,8 @@ const CalenderPage = () => {
           </Box>
           <CalenderGrid
             calenderData={calenderData}
-            todayDate={thisMonth === chosenMonth ? todayDate : undefined}
+            // todayDate={thisMonth === chosenMonth ? todayDate : undefined}
+            todayDate={undefined}
           />
         </>
       ) : null}

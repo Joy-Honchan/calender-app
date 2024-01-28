@@ -1,20 +1,22 @@
 import { styled, Box, Typography } from "@mui/material";
-import DayCountDown from "./DayCountDown";
-import dayjs from "dayjs";
-import generateCountNextHoliday from "utils/countNextHoliday";
+// import DayCountDown from "./DayCountDown";
+import WelcomeNY from "./WelcomeNY";
+// import dayjs from "dayjs";
+// import generateCountNextHoliday from "utils/countNextHoliday";
 import NavigateButtoms from "components/UI/NavigateButtons";
 import { baseUrl } from "config/Route";
 
 const imgUrl = `${baseUrl}/image/4048260.jpg`;
 
 const LandingPage = () => {
-  const daysBeforeNextHoliday = generateCountNextHoliday(
-    dayjs().format("YYYYMMDD")
-  );
+  // const daysBeforeNextHoliday = generateCountNextHoliday(
+  //   dayjs().format("YYYYMMDD")
+  // );
   return (
     <StyleWrapper>
       <Box className="center-section-box">
-        <DayCountDown total={daysBeforeNextHoliday} />
+        {/* <DayCountDown total={daysBeforeNextHoliday} /> */}
+        <WelcomeNY />
         <NavigateButtoms currentPage={0} />
       </Box>
       <Typography role="picture-credit" className="picture-credit">
@@ -41,6 +43,10 @@ const StyleWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  ".center-section-box": {
+    display: "grid",
+    placeItems: "center",
+  },
   ".landing-title-box": {
     padding: `${theme.spacing(2)} 0`,
     textAlign: "center",
