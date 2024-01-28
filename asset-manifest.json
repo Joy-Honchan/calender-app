@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.js": "/calender-app/static/js/main.44b66e46.js",
-    "static/js/489.8799a0a1.chunk.js": "/calender-app/static/js/489.8799a0a1.chunk.js",
-    "static/js/500.3c5bbb11.chunk.js": "/calender-app/static/js/500.3c5bbb11.chunk.js",
-    "static/js/101.93368e4e.chunk.js": "/calender-app/static/js/101.93368e4e.chunk.js",
+    "main.js": "/calender-app/static/js/main.3445a84f.js",
+    "static/js/814.cd3beae9.chunk.js": "/calender-app/static/js/814.cd3beae9.chunk.js",
+    "static/js/500.573e4b6b.chunk.js": "/calender-app/static/js/500.573e4b6b.chunk.js",
+    "static/js/101.f96c282e.chunk.js": "/calender-app/static/js/101.f96c282e.chunk.js",
     "static/js/787.aa1d4325.chunk.js": "/calender-app/static/js/787.aa1d4325.chunk.js",
     "static/js/772.3aff2eb6.chunk.js": "/calender-app/static/js/772.3aff2eb6.chunk.js",
     "static/js/853.efae6021.chunk.js": "/calender-app/static/js/853.efae6021.chunk.js",
@@ -12,12 +12,11 @@
     "static/js/482.692195cf.chunk.js": "/calender-app/static/js/482.692195cf.chunk.js",
     "static/js/760.dfeb2014.chunk.js": "/calender-app/static/js/760.dfeb2014.chunk.js",
     "static/js/690.725291f2.chunk.js": "/calender-app/static/js/690.725291f2.chunk.js",
-    "static/js/373.05cd30e1.chunk.js": "/calender-app/static/js/373.05cd30e1.chunk.js",
     "index.html": "/calender-app/index.html",
-    "main.44b66e46.js.map": "/calender-app/static/js/main.44b66e46.js.map",
-    "489.8799a0a1.chunk.js.map": "/calender-app/static/js/489.8799a0a1.chunk.js.map",
-    "500.3c5bbb11.chunk.js.map": "/calender-app/static/js/500.3c5bbb11.chunk.js.map",
-    "101.93368e4e.chunk.js.map": "/calender-app/static/js/101.93368e4e.chunk.js.map",
+    "main.3445a84f.js.map": "/calender-app/static/js/main.3445a84f.js.map",
+    "814.cd3beae9.chunk.js.map": "/calender-app/static/js/814.cd3beae9.chunk.js.map",
+    "500.573e4b6b.chunk.js.map": "/calender-app/static/js/500.573e4b6b.chunk.js.map",
+    "101.f96c282e.chunk.js.map": "/calender-app/static/js/101.f96c282e.chunk.js.map",
     "787.aa1d4325.chunk.js.map": "/calender-app/static/js/787.aa1d4325.chunk.js.map",
     "772.3aff2eb6.chunk.js.map": "/calender-app/static/js/772.3aff2eb6.chunk.js.map",
     "853.efae6021.chunk.js.map": "/calender-app/static/js/853.efae6021.chunk.js.map",
@@ -25,10 +24,9 @@
     "145.82bba164.chunk.js.map": "/calender-app/static/js/145.82bba164.chunk.js.map",
     "482.692195cf.chunk.js.map": "/calender-app/static/js/482.692195cf.chunk.js.map",
     "760.dfeb2014.chunk.js.map": "/calender-app/static/js/760.dfeb2014.chunk.js.map",
-    "690.725291f2.chunk.js.map": "/calender-app/static/js/690.725291f2.chunk.js.map",
-    "373.05cd30e1.chunk.js.map": "/calender-app/static/js/373.05cd30e1.chunk.js.map"
+    "690.725291f2.chunk.js.map": "/calender-app/static/js/690.725291f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.44b66e46.js"
+    "static/js/main.3445a84f.js"
   ]
 }
